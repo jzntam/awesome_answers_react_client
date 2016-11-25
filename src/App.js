@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 
-import QuestionList from './QuestionList'
+import QuestionList   from './QuestionList'
+import QuestionDetail from './QuestionDetail'
 
 const BASE_URL = 'http://localhost:3001'
 
@@ -10,8 +11,11 @@ class App extends Component {
     super(props)
 
     this.state = {
-      questions: []
+      questions: [],
+      question: undefined
     }
+
+    this.expandQuestion = this.expandQuestion.bind(this)
   }
 
   getQuestions() {
@@ -23,8 +27,17 @@ class App extends Component {
     })
   }
 
+  getQuestion(id) {
+    $.ajax({
+      url: `${BASE_URL}/api/v1/questions/${id}`,
+      success: function(question) {
+        this.setState({ question: question })
+      }.bind(this)
+    })
+  }
+
   expandQuestion(id) {
-    console.log('Question id:', id)
+    this.getQuestion(id)
   }
 
   componentDidMount() {
@@ -32,11 +45,17 @@ class App extends Component {
   }
 
   render() {
+    var content
+
+    if (this.state.question) {
+      content = <QuestionDetail question={ this.state.question } />
+    } else {
+      content = <QuestionList questions={ this.state.questions } onClick={ this.expandQuestion } />
+    }
+
     return (
       <div className="App">
-        <QuestionList
-          questions={ this.state.questions }
-          onClick={ this.expandQuestion }/>
+        { content }
       </div>
     );
   }
