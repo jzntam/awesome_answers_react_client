@@ -7,12 +7,8 @@ function QuestionDetail(props) {
 
   return (
     <div className='QuestionDetail'>
-      <div>
-        <span>Title</span>{q.title}
-      </div>
-      <div>
-        <span>Body</span>{q.body}
-      </div>
+      <h1>{q.title}</h1>
+      <p>{q.body}</p>
       <div>
         <span>Created At</span>{q.created_at}
       </div>
