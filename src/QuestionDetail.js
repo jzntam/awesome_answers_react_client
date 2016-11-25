@@ -7,6 +7,10 @@ function QuestionDetail(props) {
 
   return (
     <div className='QuestionDetail'>
+      <div className='BackButton' onClick={props.onBackClick}>
+        BURP
+      </div>
+
       <h1>{q.title}</h1>
       <p>{q.body}</p>
       <div>

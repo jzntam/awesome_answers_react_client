@@ -16,6 +16,7 @@ class App extends Component {
     }
 
     this.expandQuestion = this.expandQuestion.bind(this)
+    this.clearQuestion  = this.clearQuestion.bind(this)
   }
 
   getQuestions() {
@@ -40,6 +41,10 @@ class App extends Component {
     this.getQuestion(id)
   }
 
+  clearQuestion() {
+    this.setState({ question: null })
+  }
+
   componentDidMount() {
     this.getQuestions()
   }
@@ -48,7 +53,7 @@ class App extends Component {
     var content
 
     if (this.state.question) {
-      content = <QuestionDetail question={ this.state.question } />
+      content = <QuestionDetail question={ this.state.question } onBackClick={ this.clearQuestion } />
     } else {
       content = <QuestionList questions={ this.state.questions } onClick={ this.expandQuestion } />
     }
