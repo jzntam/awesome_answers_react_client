@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 
+import QuestionList from './QuestionList'
+
 const BASE_URL = 'http://localhost:3001'
 
 class App extends Component {
@@ -28,9 +30,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {
-          JSON.stringify(this.state.questions)
-        }
+        <QuestionList questions={ this.state.questions }/>
       </div>
     );
   }
