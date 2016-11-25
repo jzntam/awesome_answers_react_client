@@ -2,12 +2,22 @@ import React from 'react';
 import $ from 'jquery';
 
 function QuestionList(props) {
+
+  const forwardQuestion = function(id) {
+    return function(event) {
+      props.onClick(id)
+    }
+  }
+
   return (
     <ul className='QuestionList'>
       {
         props.questions.map(function(question, index) {
           return (
-            <li key={ question.id } >{ question.title }</li>
+            <li onClick={ forwardQuestion(question.id) }
+                key={ question.id }>
+              { question.title }
+            </li>
           )
         })
       }
@@ -16,7 +26,8 @@ function QuestionList(props) {
 }
 
 QuestionList.defaultProps = {
-  questions: []
+  questions: [],
+  onClick: function() {}
 }
 
 export default QuestionList;

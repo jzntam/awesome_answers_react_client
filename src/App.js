@@ -23,6 +23,10 @@ class App extends Component {
     })
   }
 
+  expandQuestion(id) {
+    console.log('Question id:', id)
+  }
+
   componentDidMount() {
     this.getQuestions()
   }
@@ -30,7 +34,9 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <QuestionList questions={ this.state.questions }/>
+        <QuestionList
+          questions={ this.state.questions }
+          onClick={ this.expandQuestion }/>
       </div>
     );
   }
