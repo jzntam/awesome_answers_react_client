@@ -1,7 +1,6 @@
 import React from 'react';
 
 function QuestionForm(props) {
-
   const handleSubmit = function(event) {
     event.preventDefault()
 
@@ -9,7 +8,7 @@ function QuestionForm(props) {
 
     const question = {
       title: formElement.querySelector('[name=title]').value,
-      body: formElement.querySelector('[name=body]').value,
+      body:  formElement.querySelector('[name=body]').value
     }
 
     props.onSubmit(question)
@@ -18,7 +17,7 @@ function QuestionForm(props) {
   const onSubmit = function(question) {}
 
   return (
-    <form onSubmit={handleSubmit} className='QuestionForm'>
+    <form onSubmit={ handleSubmit } className='QuestionForm'>
       <input type='text' name='title' />
       <textarea type='text' name='body' />
       <input type='submit' value='Submit' />

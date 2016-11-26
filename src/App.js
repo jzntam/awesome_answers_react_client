@@ -77,9 +77,13 @@ class App extends Component {
     var content
 
     if (this.state.question) {
-      content = <QuestionDetail question={ this.state.question } onBackClick={ this.clearQuestion } />
+      content = <QuestionDetail
+                  question={ this.state.question }
+                  onBackClick={ this.clearQuestion } />
     } else {
-      content = <QuestionList questions={ this.state.questions } onClick={ this.expandQuestion } />
+      content = <QuestionList
+                  questions={ this.state.questions }
+                  onClick={ this.expandQuestion } />
     }
 
     return (
