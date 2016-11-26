@@ -15,9 +15,7 @@ function QuestionForm(props) {
     props.onSubmit(question)
   }
 
-  const onSubmit = function(question) {
-
-  }
+  const onSubmit = function(question) {}
 
   return (
     <form onSubmit={handleSubmit} className='QuestionForm'>
@@ -28,7 +26,7 @@ function QuestionForm(props) {
   )
 }
 
-QuestionForm.defaultPRops = {
+QuestionForm.defaultProps = {
   onSubmit: function() {}
 }
 

@@ -4,6 +4,7 @@ import $ from 'jquery';
 import QuestionList   from './QuestionList'
 import QuestionDetail from './QuestionDetail'
 import QuestionForm   from './QuestionForm'
+import apiKeys        from './ApiKeys'
 
 const BASE_URL = 'http://localhost:3001'
 
@@ -24,6 +25,7 @@ class App extends Component {
   getQuestions() {
     $.ajax({
       url: `${BASE_URL}/api/v1/questions`,
+      headers: { "Authorization": apiKeys.awesomeAnswers },
       success: function(questions) {
         this.setState({ questions: questions })
       }.bind(this)
@@ -33,6 +35,7 @@ class App extends Component {
   getQuestion(id) {
     $.ajax({
       url: `${BASE_URL}/api/v1/questions/${id}`,
+      headers: { "Authorization": apiKeys.awesomeAnswers },
       success: function(question) {
         this.setState({ question: question })
       }.bind(this)
@@ -42,11 +45,15 @@ class App extends Component {
   postQuestion(questionParams) {
     $.ajax({
       url: `${BASE_URL}/api/v1/questions`,
+      headers: { "Authorization": apiKeys.awesomeAnswers },
       data: { question: questionParams },
       method: 'POST',
-      success: function(questions) {
-        this.getQuestion(200)
-      }.bind(this)
+      success: function(question) {
+        this.getQuestion(question.id)
+      }.bind(this),
+      error: function(question) {
+        console.error(question.responseJSON.errors)
+      }
     })
   }
 
