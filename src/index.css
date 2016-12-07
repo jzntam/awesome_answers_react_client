@@ -1,3 +1,8 @@
+input[type='title'], textarea[type='body'] {
+  font-size: 16px;
+  font-weight: 300;
+}
+
 .question-form-container {
   margin-top: 10px;
 }

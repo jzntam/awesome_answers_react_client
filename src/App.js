@@ -5,7 +5,7 @@ import QuestionList   from './QuestionList'
 import QuestionDetail from './QuestionDetail'
 import QuestionForm   from './QuestionForm'
 
-const BASE_URL = 'https://jason-answers-api.herokuapp.com/'
+const BASE_URL = 'https://jason-answers-api.herokuapp.com'
 const API_KEY  = process.env.REACT_APP_ANSWERS_API_KEY
 
 class App extends Component {
