@@ -5,6 +5,9 @@
   "devDependencies": {
     "react-scripts": "0.7.0"
   },
+  "engines": {
+    "node": "7.0.0"
+  },
   "dependencies": {
     "jquery": "^3.1.1",
     "react": "^15.4.1",
