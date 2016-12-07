@@ -5,7 +5,7 @@ import QuestionList   from './QuestionList'
 import QuestionDetail from './QuestionDetail'
 import QuestionForm   from './QuestionForm'
 
-const BASE_URL = 'http://localhost:3001'
+const BASE_URL = 'https://jason-answers-api.herokuapp.com/'
 const API_KEY  = process.env.REACT_APP_ANSWERS_API_KEY
 
 class App extends Component {
@@ -87,9 +87,13 @@ class App extends Component {
     }
 
     return (
-      <div className="App">
-         <QuestionForm onSubmit={ this.createQuestion } />
-        { content }
+      <div className='row'>
+        <div className='col-md-6'>
+          <QuestionForm onSubmit={ this.createQuestion } />
+        </div>
+        <div className='col-md-6'>
+          { content }
+        </div>
       </div>
     );
   }

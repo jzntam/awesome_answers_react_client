@@ -1,52 +1,17 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+.question-form-container {
+  margin-top: 10px;
 }
 
 .QuestionList {
   list-style: none;
   padding: 0;
-  margin: 0;
-
-  display: flex;
-  flex-flow: column;
 }
 
 .QuestionList > li {
-  padding: 1rem;
-  background-color: LightGrey;
+  margin: 10px 0px 10px;
 }
 
-.QuestionList > li:not(:last-child) {
-  margin-bottom: 1rem;
-}
-
-.QuestionDetail {
-  padding: 2rem;
-  background-color: rgb(245, 245, 245);
-  display: flex;
-  flex-flow: column;
-}
-
-.QuestionDetail > div {
-  margin-bottom: 1rem;
-}
-
-.QuestionDetail > div > span {
-  background-color: rgb(10,10,10);
-  color: white;
-  padding: 0.1rem 0.5rem;
-  margin-right: 10px;
-}
-
-.BackButton {
-  display: inline-block;
-  padding: 0.1rem, 0.5rem;
+li.list-group-item:hover {
+  background-color: #DF691A;
   cursor: pointer;
-}
-
-.BackButton:hover {
-  color: white;
-  background-color: rgb(10,10,10)
 }

@@ -9,12 +9,13 @@ function QuestionList(props) {
   }
 
   return (
-    <ul className='QuestionList'>
+    <ul className='QuestionList list-group'>
       {
         props.questions.map(function(question, index) {
           return (
             <li onClick={ forwardQuestion(question.id) }
-                key={ question.id }>
+                key={ question.id }
+                className='list-group-item'>
               { question.title }
             </li>
           )
