@@ -4,9 +4,9 @@ import $ from 'jquery';
 import QuestionList   from './QuestionList'
 import QuestionDetail from './QuestionDetail'
 import QuestionForm   from './QuestionForm'
-import apiKeys        from './ApiKeys'
 
-const BASE_URL = 'http://localhost:3001'
+const BASE_URL = 'https://jason-answers-api.herokuapp.com'
+const API_KEY  = process.env.REACT_APP_ANSWERS_API_KEY
 
 class App extends Component {
   constructor(props) {
@@ -14,7 +14,7 @@ class App extends Component {
 
     this.state = {
       questions: [],
-      question: undefined
+      question: null
     }
 
     this.expandQuestion  = this.expandQuestion.bind(this)
@@ -25,7 +25,7 @@ class App extends Component {
   getQuestions() {
     $.ajax({
       url: `${BASE_URL}/api/v1/questions`,
-      headers: { "Authorization": apiKeys.awesomeAnswers },
+      headers: { "Authorization": API_KEY },
       success: function(questions) {
         this.setState({ questions: questions })
       }.bind(this)
@@ -35,7 +35,7 @@ class App extends Component {
   getQuestion(id) {
     $.ajax({
       url: `${BASE_URL}/api/v1/questions/${id}`,
-      headers: { "Authorization": apiKeys.awesomeAnswers },
+      headers: { "Authorization": API_KEY },
       success: function(question) {
         this.setState({ question: question })
       }.bind(this)
@@ -45,7 +45,7 @@ class App extends Component {
   postQuestion(questionParams) {
     $.ajax({
       url: `${BASE_URL}/api/v1/questions`,
-      headers: { "Authorization": apiKeys.awesomeAnswers },
+      headers: { "Authorization": API_KEY },
       data: { question: questionParams },
       method: 'POST',
       success: function(question) {
@@ -87,9 +87,13 @@ class App extends Component {
     }
 
     return (
-      <div className="App">
-         <QuestionForm onSubmit={ this.createQuestion } />
-        { content }
+      <div className='row'>
+        <div className='col-md-6'>
+          <QuestionForm onSubmit={ this.createQuestion } />
+        </div>
+        <div className='col-md-6'>
+          { content }
+        </div>
       </div>
     );
   }

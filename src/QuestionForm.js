@@ -14,19 +14,26 @@ function QuestionForm(props) {
     props.onSubmit(question)
   }
 
-  const onSubmit = function(question) {}
-
   return (
-    <form onSubmit={ handleSubmit } className='QuestionForm'>
-      <input type='text' name='title' />
-      <textarea type='text' name='body' />
-      <input type='submit' value='Submit' />
-    </form>
+    <div className='col-md-12 question-form-container'>
+      <div className='panel panel-default'>
+        <div className='panel-heading'>
+          <h3 className='panel-title'>Ask a Question!</h3>
+        </div>
+        <div className='panel-body'>
+          <form onSubmit={ handleSubmit }>
+            <div className='form-group'>
+              <input type='title' name='title' id='title' className='form-control input-sm' placeholder='Question Title'/>
+            </div>
+            <div className='form-group'>
+              <textarea type='body' name='body' id='body' className='form-control input-sm' placeholder="What's you're question" rows='3'/>
+            </div>
+            <input type='submit' value='Submit' className='btn btn-info btn-block'/>
+          </form>
+        </div>
+      </div>
+    </div>
   )
-}
-
-QuestionForm.defaultProps = {
-  onSubmit: function() {}
 }
 
 export default QuestionForm;
