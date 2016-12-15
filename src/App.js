@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import $ from 'jquery';
 
 import QuestionList   from './QuestionList'
 import QuestionDetail from './QuestionDetail'
 import QuestionForm   from './QuestionForm'
 
-const BASE_URL = 'https://jason-answers-api.herokuapp.com'
+const BASE_URL = 'https://jason-answers-api.herokuapp.com/api/v1/questions/'
 const API_KEY  = process.env.REACT_APP_ANSWERS_API_KEY
 
 class App extends Component {
@@ -23,38 +22,53 @@ class App extends Component {
   }
 
   getQuestions() {
-    $.ajax({
-      url: `${BASE_URL}/api/v1/questions`,
-      headers: { "Authorization": API_KEY },
-      success: function(questions) {
-        this.setState({ questions: questions })
-      }.bind(this)
+    fetch(BASE_URL, {
+      method:  'GET',
+      headers: { 'Authorization': API_KEY },
     })
+    .then(this.checkStatus)
+    .then(function(questions) {
+      this.setState({ questions: questions })
+    }.bind(this))
   }
 
   getQuestion(id) {
-    $.ajax({
-      url: `${BASE_URL}/api/v1/questions/${id}`,
-      headers: { "Authorization": API_KEY },
-      success: function(question) {
-        this.setState({ question: question })
-      }.bind(this)
+    fetch(`${BASE_URL}${id}`, {
+      method:  'GET',
+      headers: { 'Authorization': API_KEY },
     })
+    .then(this.checkStatus)
+    .then(function(question) {
+      this.setState({ question: question })
+    }.bind(this))
   }
 
   postQuestion(questionParams) {
-    $.ajax({
-      url: `${BASE_URL}/api/v1/questions`,
-      headers: { "Authorization": API_KEY },
-      data: { question: questionParams },
+    fetch(BASE_URL, {
       method: 'POST',
-      success: function(question) {
-        this.getQuestion(question.id)
-      }.bind(this),
-      error: function(question) {
-        console.error(question.responseJSON.errors)
-      }
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': API_KEY
+      },
+      body: JSON.stringify({ question: questionParams })
     })
+    .then(this.checkStatus)
+    .then(function(question) {
+      this.setState({ question: question })
+    }.bind(this))
+  }
+
+  checkStatus(response) {
+    if (response.status >= 200 && response.status < 300) {
+      return response.json();
+    } else {
+      response.json()
+      .then(function(data) {
+        var error = new Error(data.errors.join(', '));
+        throw error
+      })
+    }
   }
 
   expandQuestion(id) {

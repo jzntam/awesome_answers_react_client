@@ -26,7 +26,7 @@ function QuestionForm(props) {
               <input type='title' name='title' id='title' className='form-control input-sm' placeholder='Question Title'/>
             </div>
             <div className='form-group'>
-              <textarea type='body' name='body' id='body' className='form-control input-sm' placeholder="What's you're question" rows='3'/>
+              <textarea type='body' name='body' id='body' className='form-control input-sm' placeholder="What's you're question" rows='5'/>
             </div>
             <input type='submit' value='Submit' className='btn btn-info btn-block'/>
           </form>
